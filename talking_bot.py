@@ -18,24 +18,24 @@ def talk(text):
     engine.runAndWait()
 
 
-def take_command():
-    try:
-        with sr.Microphone() as source:
-            print('Say Alexa to listen your command')
-            voice = listener.listen(source)
-            command = listener.recognize_google(voice)
-            command = command.lower()
-            if 'alexa' in command:
-                command = command.replace('alexa', '')
-                print("Human >> ",command)
-                return command
-    except Exception as e:
-        print(e)
-        return None
+def listen():
 
+    with sr.Microphone() as source:
+        print('Bot Listening>> ')
+        voice = listener.listen(source)
+        command = listener.recognize_google(voice)
+        command = command.lower()
+
+        if 'alexa' in command:
+            command = command.replace('alexa', '')
+            print("Human >> ",command)
+            return command
+
+        return None
+    
 
 def run_alexa():
-    command = take_command()
+    command = listen()
     print(command)
     if command:
     
